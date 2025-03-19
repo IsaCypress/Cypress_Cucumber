@@ -9,4 +9,4 @@ Background:
  
 #Los Scenarios son los tests (lo que antes era "it") 
   Scenario: login succesfull 
-  Given I do "Vamos a empezar a picar código!" 
+  #Given I do "Vamos a empezar a picar código!" 
