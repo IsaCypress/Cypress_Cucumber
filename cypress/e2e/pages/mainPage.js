@@ -1,7 +1,9 @@
-import {CommonPage } from "./commonaPage"
+import { CommonPage } from "./commonPage";
 
+export class MainPage extends CommonPage{
 
-
-export class mainPage extends mainPage { 
+  checkUrlMainPage () {
+    cy.url().should('include', 'inventory.html');
+  }
 
 }

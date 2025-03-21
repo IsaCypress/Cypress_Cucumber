@@ -1,12 +1,11 @@
-import { When, Then, Given } from "@badeball/cypress-cucumber-preprocessor"; 
- 
-// Clases importadas 
-import { mainPage} from "../pages/commonPage" 
- 
-//Instancias de clase 
-let mainPage = new mainPage(); 
+import { When, Then, Given } from "@badeball/cypress-cucumber-preprocessor";
 
+// Clases importadas
+import { MainPage} from "../pages/mainPage"
 
-Given("I visit {string}", (url) => { 
-    mainPage.typeStandarUser(url); 
-  });
+//Instancias de clase
+let mainPage = new MainPage();
+
+Given("I check url include the endpoint inventory.html", () => {
+  mainPage.checkUrlMainPage();
+ });
