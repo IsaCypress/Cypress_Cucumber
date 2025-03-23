@@ -34,9 +34,27 @@ Scenario: simple login
 
   Scenario: Verify accepted usernames are displayed on login page
     Given I can see the following "expectedUsernames"
+
+
+ Scenario: Verify error menssage without username
+  Given I type in the text box with data test "password" the text "secret_sauce"
+  And  I click on the button with data-test "login-button"
+  Then I check that the message "Epic sadface: Username is required"
    
+Scenario: Verify error message without password
+  Given I type in the text box with data test "username" the text "standard_user"
+  And  I click on the button with data-test "login-button"
+  Then I check that sin password the message "Epic sadface: Password is required" appear
 
 
+Scenario: Verify error message when username and password are incorrect
+  Given I type in the text box with data test "username" the text "Incorrect_user"
+  And I type in the text box with data test "password" the text "Incorrect_password"
+  And  I click on the button with data-test "login-button"
+  Then I check that with incorrect dates the message "Epic sadface: Username and password do not match any user in this service"
 
-
-
+Scenario: Verify error message when user has been blocked 
+  Given I type in the text box with data test "username" the text "locked_out_user"
+  And I type in the text box with data test "password" the text "secret_sauce"
+  And  I click on the button with data-test "login-button"
+  Then I check that the user has been blocked and the message is "Epic sadface: Username and password do not match any user in this service."

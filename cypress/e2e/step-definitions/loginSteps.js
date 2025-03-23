@@ -41,6 +41,22 @@ Given("I type the user name {string}", (user) => {
   loginPage.comprobarListadoNombres(expectedUsernames)
 });
 
+//Ejercicio mensajes de error
 
+Given("I check that the message {string}", () => {
+  loginPage.errorSinUser()
+});
 
+Given("I check that sin password the message {string} appear", () => {
+  loginPage.errorSinPassword()
+});
  
+
+Given("I check that with incorrect dates the message {string}", () => {
+  loginPage.errorIncorrectDates()
+});
+
+
+Given("I check that the user has been blocked and the message is {string}", () => {
+  loginPage.errorBlockedUser()
+});

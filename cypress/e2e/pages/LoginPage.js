@@ -10,6 +10,9 @@ const expectedUsernames = [
   'visual_user'
 ]
 
+const passwordLocator = '[data-test="password"]'
+
+
 export class LoginPage extends CommonPage{
 
   typeStandarUser() {
@@ -52,10 +55,23 @@ export class LoginPage extends CommonPage{
 
  comprobarListadoNombres (expectedUsernames) {
   cy.get('[data-test="login-credentials"]').find('h4', 'login-credentials').nextAll('br').should('exist', 'expectedUsernames' )
+}
 
+errorSinUser () {
+ cy.get('[data-test="error"]').should('have.text', 'Epic sadface: Username is required') 
+}
+
+errorSinPassword() {
+  cy.get('[data-test="error"]').should('have.text', 'Epic sadface: Password is required') 
+ }
+
+ errorIncorrectDates() {
+  cy.get('[data-test="error"]').should('have.text', 'Epic sadface: Username and password do not match any user in this service') 
+ }
+
+ errorBlockedUser() {
+  cy.get('[data-test="error"]').should('have.text', 'Epic sadface: Sorry, this user has been locked out.') 
 
 }
 
-}
-
- 
+} 
