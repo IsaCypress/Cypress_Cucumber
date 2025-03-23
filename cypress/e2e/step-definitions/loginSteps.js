@@ -37,4 +37,10 @@ Given("I type the user name {string}", (user) => {
  });
 
 
+ Given("I can see the following {string}", (expectedUsernames) => {
+  loginPage.comprobarListadoNombres(expectedUsernames)
+});
+
+
+
  

@@ -17,8 +17,7 @@ e2e: {
   // Asegúrate de devolver el objeto de configuración.
   return config;
   },
-  specPattern: ['cypress/e2e/**/*.feature', 'cypress/e2e/basic-test/*.js']
-  //['cypress/e2e/**/*.js'] si quiero que me detecte test basicos sin usar Cucumber
+  specPattern: ['cypress/e2e/**/*.feature', 'cypress/e2e/basic-tests/*.js']
   /*
   Para encontrar los archivos de tests, si queremos que también encuentre
   archivos .js

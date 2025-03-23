@@ -1,6 +1,14 @@
 import { CommonPage } from "./commonPage";
 
 const usernameLocator = '[data-test="username"]'
+const expectedUsernames = [
+  'standard_user',
+  'locked_out_user', 
+  'problem_user',
+  'performance_glitch_user',
+  'error_user',
+  'visual_user'
+]
 
 export class LoginPage extends CommonPage{
 
@@ -41,10 +49,13 @@ export class LoginPage extends CommonPage{
   cy.get('[data-test="password"]').type(password);
  }
 
-comprobarListadoNombres (acceptedNames) {
-  cy.get('[data-test="login-credentials"]').find('h4', 'login-credentials').should('contain', 'standar_user')
-  
-  }
+
+ comprobarListadoNombres (expectedUsernames) {
+  cy.get('[data-test="login-credentials"]').find('h4', 'login-credentials').nextAll('br').should('exist', 'expectedUsernames' )
+
+
+}
+
+}
 
  
-}
