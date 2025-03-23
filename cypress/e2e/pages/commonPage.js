@@ -1,5 +1,6 @@
 export class CommonPage{
 
+  
   visitLink(url) {
   cy.visit(url);
   }
@@ -49,4 +50,6 @@ export class CommonPage{
    clickButtonByText (text) {
     cy.get('inputbutton').contain(text).click()
    }
+
+  
  }

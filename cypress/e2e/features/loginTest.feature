@@ -35,6 +35,7 @@ Scenario: simple login
   Scenario: Verify accepted usernames are displayed on login page
     Given I can see the following "expectedUsernames"
 
+#Ejercicio mensajes de error
 
  Scenario: Verify error menssage without username
   Given I type in the text box with data test "password" the text "secret_sauce"
@@ -58,3 +59,10 @@ Scenario: Verify error message when user has been blocked
   And I type in the text box with data test "password" the text "secret_sauce"
   And  I click on the button with data-test "login-button"
   Then I check that the user has been blocked and the message is "Epic sadface: Username and password do not match any user in this service."
+
+  Scenario: Verify that the text is displayed or not inthe bodysuit
+  Given I can see the text "Accepted usernames are:"
+  Given I type in the text box with data test "username" the text "standard_user"
+  And I type in the text box with data test "password" the text "secret_sauce"
+  And  I click on the button with data-test "login-button" 
+  Then the message with "Accepted usernames are" is not displayed

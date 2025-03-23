@@ -60,3 +60,14 @@ Given("I check that with incorrect dates the message {string}", () => {
 Given("I check that the user has been blocked and the message is {string}", () => {
   loginPage.errorBlockedUser()
 });
+
+
+//Ejercicios  localizando la clase
+
+Given("I can see the text {string}", (elementByClass) => {
+  loginPage.textShow(elementByClass)
+});
+
+Given("the message with {string} is not displayed", (elementByBody) => {
+  loginPage.textNotShow(elementByBody)
+});

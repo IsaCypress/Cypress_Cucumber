@@ -11,6 +11,8 @@ const expectedUsernames = [
 ]
 
 const passwordLocator = '[data-test="password"]'
+const elementByClass = '[data-test="login-credentials"]'
+const elementByBody = '.page_wrapper'
 
 
 export class LoginPage extends CommonPage{
@@ -74,4 +76,13 @@ errorSinPassword() {
 
 }
 
-} 
+textShow(){
+  cy.get(elementByClass, { timeout: 10000 }).find('h4').should('be.visible')
+  //should('contain.text', 'Accepted usernames are:')
+}
+
+textNotShow(){
+cy.get(elementByBody, { timeout: 10000 }).should('not.contain', 'Accepted usernames are')
+
+}
+}
