@@ -36,9 +36,5 @@ Given("I type the user name {string}", (user) => {
   loginPage.typePassword(password);
  });
 
- Given("I can see the following {string}", (usernames) => {
-  loginPage.comprobarListadoNombres(usernames);
-
- });
 
  

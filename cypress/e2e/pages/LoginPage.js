@@ -41,7 +41,7 @@ export class LoginPage extends CommonPage{
   cy.get('[data-test="password"]').type(password);
  }
 
-comprobarListadoNombres (usernames) {
+comprobarListadoNombres (acceptedNames) {
   cy.get('[data-test="login-credentials"]').find('h4', 'login-credentials').should('contain', 'standar_user')
   
   }
