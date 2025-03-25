@@ -1,20 +1,10 @@
 import { CommonPage } from "./commonPage";
 
+// Locators
 const usernameLocator = '[data-test="username"]'
-const expectedUsernames = [
-  'standard_user',
-  'locked_out_user', 
-  'problem_user',
-  'performance_glitch_user',
-  'error_user',
-  'visual_user'
-]
+const acceptedtUserNames = ['standard_user','locked_out_user','problem_user','performance_glitch_user','error_user','visual_user'];
 
-const passwordLocator = '[data-test="password"]'
-const elementByClass = '[data-test="login-credentials"]'
-const elementByBody = '.page_wrapper'
-
-
+// Functions
 export class LoginPage extends CommonPage{
 
   typeStandarUser() {
@@ -47,42 +37,32 @@ export class LoginPage extends CommonPage{
 
 
  typeUser (user) {
-  cy.get('[data-test="username"]').type(user);
+    cy.get('[data-test="username"]').type(user);
  }
 
  typePassword (password) {
-  cy.get('[data-test="password"]').type(password);
+    cy.get('[data-test="password"]').type(password);
  }
 
+ // Ejercicios 25/03/2025
 
- comprobarListadoNombres (expectedUsernames) {
-  cy.get('[data-test="login-credentials"]').find('h4', 'login-credentials').nextAll('br').should('exist', 'expectedUsernames' )
-}
-
-errorSinUser () {
- cy.get('[data-test="error"]').should('have.text', 'Epic sadface: Username is required') 
-}
-
-errorSinPassword() {
-  cy.get('[data-test="error"]').should('have.text', 'Epic sadface: Password is required') 
+ checkAcceptedUsernames () {
+  cy.get('[data-test="login-credentials"]')
+    .should('contain', 'standard_user')
+    .and('contain', 'locked_out_user')
+    .and('contain', 'problem_user')
+    .and('contain', 'performance_glitch_user')
+    .and('contain', 'error_user')
+    .and('contain', 'visual_user');
  }
 
- errorIncorrectDates() {
-  cy.get('[data-test="error"]').should('have.text', 'Epic sadface: Username and password do not match any user in this service') 
- }
-
- errorBlockedUser() {
-  cy.get('[data-test="error"]').should('have.text', 'Epic sadface: Sorry, this user has been locked out.') 
-
+checkAcceptedUsernamesBetter () {
+  acceptedtUserNames.forEach(username => {
+    cy.get('[data-test="login-credentials"]').should('contain', username);
+  }); 
 }
 
-textShow(){
-  cy.get(elementByClass, { timeout: 10000 }).find('h4').should('be.visible')
-  //should('contain.text', 'Accepted usernames are:')
-}
-
-textNotShow(){
-cy.get(elementByBody, { timeout: 10000 }).should('not.contain', 'Accepted usernames are')
-
+checkErrorMessages (errorMessage) {
+  this.checkElementContains('error', errorMessage)
 }
 }
