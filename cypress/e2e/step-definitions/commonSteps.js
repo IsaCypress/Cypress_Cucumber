@@ -5,6 +5,7 @@ import { CommonPage} from "../pages/commonPage"
 
 //Instancias de clase
 let commonPage = new CommonPage();
+const endpoint = '/inventory.html'
 
 Given("I visit {string}", (url) => {
   commonPage.visitLink(url);
@@ -52,3 +53,14 @@ Given("I visit {string}", (url) => {
 Given("I click on the element with data-test {string}", (elementDataTest) => {
   commonPage.clickElementByDataTest(elementDataTest);
 });
+ 
+
+Given("I click on the element with data-test {string} should {string} contain the text {string}", (elementDataTest, assertion) => {
+  commonPage.clickElementBydataTest(elementDataTest, assertion);
+ });
+ 
+ Given("I click on the element with data-test {string} include the endpoint {string}", (elementDataTest, endpoint) => {
+  commonPage.reviewElementByDataTest(elementDataTest, endpoint);
+})
+
+

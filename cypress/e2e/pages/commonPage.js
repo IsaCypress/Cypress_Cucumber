@@ -79,4 +79,15 @@ export class CommonPage{
   getElementByAttribute(attribute, className) {
     return cy.get(`[${attribute} = "${className}"]`)
   }
+
+  
+  clickElementBydataTest(elementByDataTest) {
+    this.getElementByDataTest(elementByDataTest)
+   }
+
+   reviewElementByDataTest(elementDataTest, endpoint) {
+    cy.get(elementDataTest, {timeout: 30000 }).click()
+    cy.url().should('include', endpoint)
+    
+   }
  }
