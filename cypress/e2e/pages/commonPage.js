@@ -1,7 +1,8 @@
 export class CommonPage{
 
   visitLink(url) {
-  cy.visit(url);
+    cy.visit('https://www.max.com/es/es', {
+    failOnStatusCode: false })
   }
   
   checkUrlnotInclude(endpoint) {
@@ -80,14 +81,31 @@ export class CommonPage{
     return cy.get(`[${attribute} = "${className}"]`)
   }
 
-  
-  clickElementBydataTest(elementByDataTest) {
-    this.getElementByDataTest(elementByDataTest)
-   }
+//------------------------------------------------------------------------------------------------------------//
+/// Función para testear accesibilidad
+  testAccesibilityInScreen () {
+    cy.injectAxe();
+    cy.checkA11y();
+  }
 
-   reviewElementByDataTest(elementDataTest, endpoint) {
-    cy.get(elementDataTest, {timeout: 30000 }).click()
-    cy.url().should('include', endpoint)
-    
-   }
+  testAccesibilityOnElement (elementLocator) {
+    cy.injectAxe();
+    cy.checkA11y(elementLocator)
+  }
+
+  interceptHBOApiCall () {
+    cy.intercept('GET','**/ot_guard_logo.svg').as('hboCookies');
+    cy.wait('@hboCookies', {timeout:10000}); 
+  }
+
+  interceptApiCall (apiCall) {
+    cy.intercept('GET',apiCall).as('apiCallAlias');
+    cy.wait('@apiCallAlias', {timeout:10000}); 
+  }
+
+  interceptApiCallMethodTimeout (method, apiCall, timeoutTime) {
+    cy.intercept(method,apiCall).as('apiCallAlias');
+    cy.wait('@apiCallAlias', {timeout:timeoutTime}); 
+  }
+
  }

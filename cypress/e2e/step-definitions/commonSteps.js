@@ -5,7 +5,6 @@ import { CommonPage} from "../pages/commonPage"
 
 //Instancias de clase
 let commonPage = new CommonPage();
-const endpoint = '/inventory.html'
 
 Given("I visit {string}", (url) => {
   commonPage.visitLink(url);
@@ -27,7 +26,7 @@ Given("I visit {string}", (url) => {
   commonPage.typeInTextBoxByDataTest(texBoxByDataText, text);
  });
  
- // Ejercicios 25/03/2025
+ // Ejercicios 24/03/2025
 
  Given("I check that the element with data-test {string} contain the text {string}", (elementByDataTest, text) => {
   commonPage.checkElementContains(elementByDataTest, text);
@@ -54,13 +53,39 @@ Given("I click on the element with data-test {string}", (elementDataTest) => {
   commonPage.clickElementByDataTest(elementDataTest);
 });
  
+// Ejercicios 26/03/2025
 
-Given("I click on the element with data-test {string} should {string} contain the text {string}", (elementDataTest, assertion) => {
-  commonPage.clickElementBydataTest(elementDataTest, assertion);
- });
- 
- Given("I click on the element with data-test {string} include the endpoint {string}", (elementDataTest, endpoint) => {
-  commonPage.reviewElementByDataTest(elementDataTest, endpoint);
+Given("I click on the element with the text {string}", (elementDataTest) => {
+  commonPage.clickElementByContent(elementDataTest);
+});
+
+
+
+//-------------------------------------------------------------------------------------------//
+  // Steps para test de accesibilidad
+Given('I test the accesibility in all the screen', () => {
+  commonPage.testAccesibilityInScreen()
 })
 
+Given('I test the accesibility on the element with locator {string}', (elementLocator) => {
+  commonPage.testAccesibilityOnElement(elementLocator)
+})
+
+
+
+//-------------------------------------------------------------------------------------------//
+  // Steps para intercept
+
+Given('I wait until the api call for the cookies in HBO page', () => {
+  commonPage.interceptHBOApiCall()
+})
+
+Given('I wait until the api call {string}', (interceptApiCall) => {
+  commonPage.interceptApiCall(interceptApiCall)
+})
+
+
+Given('I wait until the api call with method {string}, endpoint {string} for the max time {int}', (method, interceptApiCall, timeoutTime) => {
+  commonPage.interceptApiCallMethodTimeout(method, interceptApiCall, timeoutTime)
+})
 
